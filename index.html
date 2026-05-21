@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inmobiliaria Chantiri – Azul, Buenos Aires</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #0f1f35;
+      --gold:   #c9922a;
+      --gold-lt:#e8b252;
+      --cream:  #f9f5ef;
+      --white:  #ffffff;
+      --gray:   #6b7280;
+      --light:  #f3f4f6;
+      --shadow: 0 4px 24px rgba(0,0,0,.10);
+    }
+
+    html { scroll-behavior: smooth; }
+    body  { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6vw; height: 70px;
+      background: rgba(15,31,53,.95); backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201,146,42,.25);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-brand span { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--white); }
+    .nav-brand em   { font-style: normal; color: var(--gold); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,.82); font-size: .88rem; text-decoration: none;
+      font-weight: 500; letter-spacing: .03em; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--gold-lt); }
+    .nav-cta {
+      background: var(--gold); color: var(--white); border: none; border-radius: 6px;
+      padding: 9px 20px; font-size: .85rem; font-weight: 600; cursor: pointer;
+      text-decoration: none; transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--gold-lt); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      background: #0a1428;
+      position: relative; overflow: hidden; padding-top: 70px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: -30px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/2/21/Azul_-_Buenos_Aires_-_Argentina_%2821800214844%29.jpg')
+        center center / cover no-repeat;
+      filter: blur(7px);
+      z-index: 0;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(10,20,40,.80) 0%, rgba(10,20,40,.50) 60%, rgba(10,20,40,.70) 100%),
+        linear-gradient(to bottom, transparent 55%, rgba(10,20,40,.65) 100%);
+      z-index: 1; pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 2; padding: 0 6vw; max-width: 680px; }
+    .hero-badge {
+      display: inline-block; background: rgba(201,146,42,.18); border: 1px solid var(--gold);
+      color: var(--gold-lt); font-size: .78rem; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 22px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 3.8rem);
+      color: var(--white); line-height: 1.15; margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      color: rgba(255,255,255,.72); font-size: 1.05rem; line-height: 1.7;
+      max-width: 520px; margin-bottom: 36px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: var(--white); padding: 14px 32px;
+      border-radius: 8px; font-weight: 600; font-size: .95rem;
+      text-decoration: none; transition: all .2s; display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,146,42,.4); }
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,.4); color: var(--white);
+      padding: 14px 32px; border-radius: 8px; font-weight: 500; font-size: .95rem;
+      text-decoration: none; transition: all .2s; display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+
+    .hero-stats {
+      position: absolute; right: 6vw; bottom: 10vh;
+      display: flex; gap: 40px; z-index: 2;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--gold); font-weight: 700; }
+    .stat-lbl { color: rgba(255,255,255,.6); font-size: .8rem; margin-top: 2px; }
+
+    /* ── SECTIONS SHARED ── */
+    section { padding: 90px 6vw; }
+    .section-tag {
+      display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--navy); margin-bottom: 14px;
+    }
+    .section-sub { color: var(--gray); font-size: 1rem; line-height: 1.7; max-width: 560px; }
+    .divider { width: 48px; height: 3px; background: var(--gold); border-radius: 2px; margin: 18px 0 40px; }
+
+    /* ── PROPIEDADES ── */
+    #propiedades { background: var(--cream); }
+    .props-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; margin-bottom: 40px; }
+    .filter-tabs { display: flex; gap: 8px; }
+    .tab {
+      padding: 8px 18px; border-radius: 20px; border: 1.5px solid #ddd;
+      font-size: .84rem; font-weight: 500; cursor: pointer; transition: all .2s;
+      background: var(--white); color: var(--gray);
+    }
+    .tab.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .tab:hover:not(.active) { border-color: var(--gold); color: var(--gold); }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
+
+    .card {
+      background: var(--white); border-radius: 14px; overflow: hidden;
+      box-shadow: var(--shadow); transition: transform .25s, box-shadow .25s;
+      display: flex; flex-direction: column;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.14); }
+
+    .card-img {
+      height: 200px; position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #1a3358, #0f1f35);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-img .house-svg { font-size: 5rem; opacity: .18; }
+    .card-badge {
+      position: absolute; top: 14px; left: 14px;
+      padding: 5px 12px; border-radius: 20px; font-size: .74rem; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase;
+    }
+    .badge-venta  { background: var(--gold);  color: var(--white); }
+    .badge-alquiler { background: #0ea5e9; color: var(--white); }
+    .card-icons {
+      position: absolute; bottom: 14px; right: 14px;
+      display: flex; gap: 8px;
+    }
+    .card-icon {
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+      color: var(--white); font-size: .7rem; padding: 4px 9px; border-radius: 12px;
+    }
+
+    .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .card-type { font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--gold); margin-bottom: 6px; }
+    .card-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--navy); margin-bottom: 8px; }
+    .card-loc { color: var(--gray); font-size: .85rem; display: flex; align-items: center; gap: 5px; margin-bottom: 16px; }
+    .card-price { font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-top: auto; }
+    .card-price small { font-size: .75rem; font-weight: 400; color: var(--gray); margin-left: 4px; }
+    .card-footer { padding: 0 20px 20px; display: flex; gap: 10px; }
+    .btn-card-primary {
+      flex: 1; background: var(--navy); color: var(--white); border: none;
+      padding: 11px; border-radius: 8px; font-size: .85rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; text-align: center; transition: background .2s;
+    }
+    .btn-card-primary:hover { background: #1a3358; }
+    .btn-card-wa {
+      background: #25d366; color: var(--white); border: none;
+      padding: 11px 14px; border-radius: 8px; font-size: 1rem;
+      cursor: pointer; text-decoration: none; display: flex; align-items: center; transition: background .2s;
+    }
+    .btn-card-wa:hover { background: #1ebe5d; }
+
+    /* ── NOSOTROS ── */
+    #nosotros { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-visual {
+      background: linear-gradient(135deg, #0f1f35, #1a3358);
+      border-radius: 20px; padding: 50px 40px;
+      display: flex; flex-direction: column; gap: 28px; position: relative; overflow: hidden;
+    }
+    .about-visual::after {
+      content: '🏠'; font-size: 10rem; opacity: .05;
+      position: absolute; right: -20px; bottom: -20px;
+    }
+    .about-feat { display: flex; align-items: flex-start; gap: 16px; }
+    .feat-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .feat-text h4 { color: var(--white); font-size: .95rem; font-weight: 600; margin-bottom: 4px; }
+    .feat-text p  { color: rgba(255,255,255,.6); font-size: .84rem; line-height: 1.5; }
+    .about-text .section-sub { max-width: 100%; }
+    .about-info { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+    .info-row { display: flex; align-items: center; gap: 12px; font-size: .9rem; color: var(--navy); }
+    .info-row span:first-child { font-size: 1.2rem; width: 28px; }
+    .info-row strong { font-weight: 600; }
+    .matricula-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--cream); border: 1px solid rgba(201,146,42,.3);
+      color: var(--navy); padding: 8px 16px; border-radius: 8px; font-size: .85rem;
+      margin-top: 20px;
+    }
+
+    /* ── CONTACTO ── */
+    #contacto { background: var(--navy); }
+    #contacto .section-title { color: var(--white); }
+    #contacto .section-sub { color: rgba(255,255,255,.6); }
+    #contacto .divider { background: var(--gold); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .contact-cards { display: flex; flex-direction: column; gap: 16px; }
+    .contact-card {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px; padding: 20px 24px; display: flex; align-items: center; gap: 18px;
+      text-decoration: none; transition: all .2s;
+    }
+    .contact-card:hover { background: rgba(255,255,255,.10); border-color: var(--gold); transform: translateX(4px); }
+    .contact-card-icon { font-size: 1.8rem; flex-shrink: 0; }
+    .contact-card-text label { display: block; font-size: .72rem; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 3px; }
+    .contact-card-text span { color: var(--white); font-size: .97rem; font-weight: 500; }
+
+    .map-placeholder {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px; overflow: hidden; height: 320px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.4); gap: 12px;
+    }
+    .map-placeholder iframe { width: 100%; height: 100%; border: none; border-radius: 14px; }
+
+    .wa-btn-big {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      background: #25d366; color: var(--white);
+      padding: 16px 32px; border-radius: 10px; font-size: 1.05rem; font-weight: 700;
+      text-decoration: none; margin-top: 28px; transition: all .2s;
+    }
+    .wa-btn-big:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,.35); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #07111e; padding: 36px 6vw;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+      border-top: 1px solid rgba(201,146,42,.2);
+    }
+    footer p { color: rgba(255,255,255,.45); font-size: .82rem; }
+    footer a { color: var(--gold); text-decoration: none; }
+    .footer-brand { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.1rem; }
+    .footer-brand em { font-style: normal; color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links, .hero-stats { display: none; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero-content { padding: 30px 5vw; }
+      section { padding: 60px 5vw; }
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <a class="nav-brand" href="#">
+    <span>Inmobiliaria <em>Chantiri</em></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#propiedades">Propiedades</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/5492281501859" target="_blank">💬 WhatsApp</a>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="hero-badge">📍 Azul, Buenos Aires</div>
+    <h1>Tu hogar ideal <span>te espera</span> en Azul</h1>
+    <p>Más de una década conectando familias con su próximo hogar. Casas, locales y propiedades en Azul y la zona con asesoramiento profesional personalizado.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#propiedades">Ver propiedades</a>
+      <a class="btn-outline" href="#contacto">Contactar</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">4</div>
+      <div class="stat-lbl">En venta</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1</div>
+      <div class="stat-lbl">En alquiler</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">10+</div>
+      <div class="stat-lbl">Años de experiencia</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PROPIEDADES ══════════ -->
+<section id="propiedades">
+  <div class="reveal">
+    <div class="props-header">
+      <div>
+        <span class="section-tag">Nuestras propiedades</span>
+        <h2 class="section-title">Disponibles ahora</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="filter-tabs">
+        <button class="tab active" onclick="filtrar('todos', this)">Todos</button>
+        <button class="tab" onclick="filtrar('venta', this)">Venta</button>
+        <button class="tab" onclick="filtrar('alquiler', this)">Alquiler</button>
+      </div>
+    </div>
+
+    <div class="grid" id="propGrid">
+
+      <!-- PROP 1 -->
+      <div class="card" data-tipo="venta">
+        <div class="card-img">
+          <span class="house-svg">🏠</span>
+          <span class="card-badge badge-venta">Venta</span>
+          <div class="card-icons">
+            <span class="card-icon">🏡 Casa</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-type">Casa en venta</div>
+          <div class="card-title">Barrio Ceramista</div>
+          <div class="card-loc">📍 Barrio Ceramista, Azul</div>
+          <div class="card-price">USD 60.000 <small>dólares</small></div>
+        </div>
+        <div class="card-footer">
+          <a class="btn-card-primary" href="https://wa.me/5492281501859?text=Hola%20Pablo!%20Me%20interesa%20la%20casa%20en%20Barrio%20Ceramista%20(USD%2060.000)" target="_blank">Consultar</a>
+          <a class="btn-card-wa" href="https://wa.me/5492281501859?text=Hola%20Pablo!%20Me%20interesa%20la%20casa%20en%20Barrio%20Ceramista%20(USD%2060.000)" target="_blank">💬</a>
+        </div>
+      </div>
+
+      <!-- PROP 2 -->
+      <div class="card" data-tipo="venta">
+        <div class="card-img">
+          <span class="house-svg">🏠</span>
+          <span class="card-badge badge-venta">Venta</span>
+          <div class="card-icons">
+            <span class="card-icon">🏡 Casa</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-type">Casa en venta</div>
+          <div class="card-title">Guido Spano y Rauch</div>
+          <div class="card-loc">📍 Guido Spano y Rauch, Azul</div>
+          <div class="card-price">USD 45.000 <small>dólares</small></div>
+        </div>
+        <div class="card-footer">
+          <a class="btn-card-primary" href="https://wa.me/5492281501859?text=Hola%20Pablo!%20Me%20interesa%20la%20casa%20en%20Guido%20Spano%20y%20Rauch%20(USD%2045.000)" target="_blank">Consultar</a>
+          <a class="btn-card-wa" href="https://wa.me/5492281501859?text=Hola%20Pablo!%20Me%20interesa%20la%20casa%20en%20Guido%20Spano%20y%20Rauch%20(USD%2045.000)" target="_blank">💬</a>
+        </div>
+      </div>
+
+      <!-- PROP 3 -->
+      <div class="card" data-tipo="venta">
+        <div class="card-img">
+          <span class="house-svg">🏠</span>
+          <span class="card-badge badge-venta">Venta</span>
+          <div class="card-icons">
+            <span class="card-icon">🏡 Casa</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-type">Casa en venta</div>
+          <div class="card-title">Calle 7 y 25 de Mayo</div>
+          <div class="card-loc">📍 Calle 7 y 25 de Mayo, Azul</div>
+          <div class="card-price">USD 50.000 <small>dólares</small></div>
+        </div>
+        <div class="card-footer">
+          <a class="btn-card-primary" href="https://wa.me/5492281501859?text=Hola%20Pablo!%20Me%20interesa%20la%20casa%20en%20Calle%207%20y%2025%20de%20Mayo%20(USD%2050.000)" target="_blank">Consultar</a>
+          <a class="btn-card-wa" href="https://wa.me/5492281501859?text=Hola%20Pablo!%20Me%20interesa%20la%20casa%20en%20Calle%207%20y%2025%20de%20Mayo%20(USD%2050.000)" target="_blank">💬</a>
+        </div>
+      </div>
+
+      <!-- PROP 4 -->
+      <div class="card" data-tipo="venta">
+        <div class="card-img" style="background: linear-gradient(135deg, #1e3a5f, #2a4f7a);">
+          <span class="house-svg">🏠</span>
+          <span class="card-badge badge-venta">Venta</span>
+          <div class="card-icons">
+            <span class="card-icon">⭐ Destacada</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-type">Casa en venta · Destacada</div>
+          <div class="card-title">Misiones y Rauch</div>
+          <div class="card-loc">📍 Misiones y Rauch, Azul</div>
+          <div class="card-price">USD 80.000 <small>dólares</small></div>
+        </div>
+        <div class="card-footer">
+          <a class="btn-card-primary" href="https://wa.me/5492281501859?text=Hola%20Pablo!%20Me%20interesa%20la%20casa%20en%20Misiones%20y%20Rauch%20(USD%2080.000)" target="_blank">Consultar</a>
+          <a class="btn-card-wa" href="https://wa.me/5492281501859?text=Hola%20Pablo!%20Me%20interesa%20la%20casa%20en%20Misiones%20y%20Rauch%20(USD%2080.000)" target="_blank">💬</a>
+        </div>
+      </div>
+
+      <!-- LOCAL ALQUILER -->
+      <div class="card" data-tipo="alquiler">
+        <div class="card-img" style="background: linear-gradient(135deg, #0c3550, #0e5070);">
+          <span class="house-svg">🏪</span>
+          <span class="card-badge badge-alquiler">Alquiler</span>
+          <div class="card-icons">
+            <span class="card-icon">🏪 Local</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-type">Local comercial · Alquiler</div>
+          <div class="card-title">25 casi San Martín</div>
+          <div class="card-loc">📍 Calle 25 casi San Martín, Azul</div>
+          <div class="card-price">$750.000 <small>pesos / mes</small></div>
+        </div>
+        <div class="card-footer">
+          <a class="btn-card-primary" href="https://wa.me/5492281501859?text=Hola%20Pablo!%20Me%20interesa%20el%20local%20en%20calle%2025%20casi%20San%20Mart%C3%ADn%20(%24750.000%2Fmes)" target="_blank">Consultar</a>
+          <a class="btn-card-wa" href="https://wa.me/5492281501859?text=Hola%20Pablo!%20Me%20interesa%20el%20local%20en%20calle%2025%20casi%20San%20Mart%C3%ADn%20(%24750.000%2Fmes)" target="_blank">💬</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ NOSOTROS ══════════ -->
+<section id="nosotros">
+  <div class="about-grid reveal">
+    <div class="about-visual">
+      <div class="about-feat">
+        <span class="feat-icon">🏅</span>
+        <div class="feat-text">
+          <h4>Martillero y Corredor Público</h4>
+          <p>Habilitado y matriculado para operar en la Provincia de Buenos Aires</p>
+        </div>
+      </div>
+      <div class="about-feat">
+        <span class="feat-icon">🤝</span>
+        <div class="feat-text">
+          <h4>Trato personalizado</h4>
+          <p>Cada cliente recibe atención directa del responsable de la inmobiliaria</p>
+        </div>
+      </div>
+      <div class="about-feat">
+        <span class="feat-icon">📍</span>
+        <div class="feat-text">
+          <h4>Conocemos Azul</h4>
+          <p>Experiencia local para asesorarte sobre los mejores barrios y valores del mercado</p>
+        </div>
+      </div>
+      <div class="about-feat">
+        <span class="feat-icon">💼</span>
+        <div class="feat-text">
+          <h4>Compra, venta y alquiler</h4>
+          <p>Gestionamos toda la operación de principio a fin con total seguridad jurídica</p>
+        </div>
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="section-tag">Sobre nosotros</span>
+      <h2 class="section-title">Inmobiliaria Chantiri</h2>
+      <div class="divider"></div>
+      <p class="section-sub">
+        Somos una inmobiliaria familiar con base en Azul, Provincia de Buenos Aires.
+        Pablo Chantiri, Martillero y Corredor Público matriculado, lidera personalmente
+        cada operación para garantizar transparencia, confianza y los mejores resultados
+        para compradores, vendedores e inquilinos.
+      </p>
+      <div class="about-info">
+        <div class="info-row"><span>👤</span><span><strong>Pablo Chantiri</strong> – Responsable</span></div>
+        <div class="info-row"><span>📋</span><span>Martillero y Corredor Público – Mat. 24964</span></div>
+        <div class="info-row"><span>📍</span><span>Belgrano 662, Azul (B7300), Buenos Aires</span></div>
+        <div class="info-row"><span>📞</span><span>02281 50-1859</span></div>
+        <div class="info-row"><span>✉️</span><span>chantiriinmobiliaria@hotmail.com</span></div>
+      </div>
+      <div class="matricula-tag">
+        ✅ &nbsp;<span>Habilitado por el Colegio de Martilleros y Corredores Públicos — Pcia. de Buenos Aires</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CONTACTO ══════════ -->
+<section id="contacto">
+  <div class="reveal">
+    <span class="section-tag">Contacto</span>
+    <h2 class="section-title">Hablemos hoy</h2>
+    <div class="divider"></div>
+    <p class="section-sub">¿Tenés una consulta sobre alguna propiedad? Contactanos por el medio que prefieras y te respondemos a la brevedad.</p>
+
+    <div class="contact-grid" style="margin-top: 44px;">
+      <div>
+        <div class="contact-cards">
+          <a class="contact-card" href="https://wa.me/5492281501859" target="_blank">
+            <span class="contact-card-icon">💬</span>
+            <div class="contact-card-text">
+              <label>WhatsApp</label>
+              <span>02281 50-1859</span>
+            </div>
+          </a>
+          <a class="contact-card" href="tel:+5492281501859">
+            <span class="contact-card-icon">📞</span>
+            <div class="contact-card-text">
+              <label>Teléfono</label>
+              <span>02281 50-1859</span>
+            </div>
+          </a>
+          <a class="contact-card" href="mailto:chantiriinmobiliaria@hotmail.com">
+            <span class="contact-card-icon">✉️</span>
+            <div class="contact-card-text">
+              <label>Correo electrónico</label>
+              <span>chantiriinmobiliaria@hotmail.com</span>
+            </div>
+          </a>
+          <a class="contact-card" href="#" onclick="return false;">
+            <span class="contact-card-icon">📍</span>
+            <div class="contact-card-text">
+              <label>Dirección</label>
+              <span>Belgrano 662, Azul (B7300), Buenos Aires</span>
+            </div>
+          </a>
+        </div>
+
+        <a class="wa-btn-big" href="https://wa.me/5492281501859?text=Hola%20Pablo!%20Quisiera%20hacer%20una%20consulta%20sobre%20propiedades." target="_blank">
+          💬 &nbsp; Escribir por WhatsApp
+        </a>
+      </div>
+
+      <div class="map-placeholder">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.5!2d-60.0025!3d-36.7765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95ba5a07c5b65ae3%3A0x9a99f74b1c9b36a9!2sBelgrano%20662%2C%20Azul%2C%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-brand">Inmobiliaria <em>Chantiri</em></div>
+  <p>Belgrano 662, Azul (B7300) · <a href="tel:+5492281501859">02281 50-1859</a></p>
+  <p style="color:rgba(255,255,255,.3)">© 2025 · Pablo Chantiri · Mat. 24964</p>
+</footer>
+
+<script>
+  // Filtro tabs
+  function filtrar(tipo, el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(c => {
+      c.style.display = (tipo === 'todos' || c.dataset.tipo === tipo) ? '' : 'none';
+    });
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
