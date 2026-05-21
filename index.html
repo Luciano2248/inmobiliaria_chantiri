@@ -11,10 +11,10 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:   #0f1f35;
-      --gold:   #c9922a;
-      --gold-lt:#e8b252;
-      --cream:  #f9f5ef;
+      --navy:   #1a0a0a;
+      --gold:   #c0292b;
+      --gold-lt:#e84345;
+      --cream:  #fdf2f2;
       --white:  #ffffff;
       --gray:   #6b7280;
       --light:  #f3f4f6;
@@ -29,8 +29,8 @@
       position: fixed; top: 0; width: 100%; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 6vw; height: 70px;
-      background: rgba(15,31,53,.95); backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(201,146,42,.25);
+      background: rgba(26,10,10,.95); backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(192,41,43,.30);
     }
     .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .nav-brand span { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--white); }
@@ -51,7 +51,7 @@
     /* ── HERO ── */
     .hero {
       min-height: 100vh; display: flex; align-items: center;
-      background: #0a1428;
+      background: #1a0a0a;
       position: relative; overflow: hidden; padding-top: 70px;
     }
     .hero::before {
@@ -66,13 +66,13 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        linear-gradient(to right, rgba(10,20,40,.80) 0%, rgba(10,20,40,.50) 60%, rgba(10,20,40,.70) 100%),
-        linear-gradient(to bottom, transparent 55%, rgba(10,20,40,.65) 100%);
+        linear-gradient(to right, rgba(26,10,10,.80) 0%, rgba(26,10,10,.50) 60%, rgba(26,10,10,.70) 100%),
+        linear-gradient(to bottom, transparent 55%, rgba(26,10,10,.65) 100%);
       z-index: 1; pointer-events: none;
     }
     .hero-content { position: relative; z-index: 2; padding: 0 6vw; max-width: 680px; }
     .hero-badge {
-      display: inline-block; background: rgba(201,146,42,.18); border: 1px solid var(--gold);
+      display: inline-block; background: rgba(192,41,43,.18); border: 1px solid var(--gold);
       color: var(--gold-lt); font-size: .78rem; font-weight: 600; letter-spacing: .1em;
       text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 22px;
     }
@@ -91,7 +91,7 @@
       border-radius: 8px; font-weight: 600; font-size: .95rem;
       text-decoration: none; transition: all .2s; display: inline-block;
     }
-    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,146,42,.4); }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(192,41,43,.45); }
     .btn-outline {
       border: 1.5px solid rgba(255,255,255,.4); color: var(--white);
       padding: 14px 32px; border-radius: 8px; font-weight: 500; font-size: .95rem;
@@ -143,7 +143,7 @@
 
     .card-img {
       height: 200px; position: relative; overflow: hidden;
-      background: linear-gradient(135deg, #1a3358, #0f1f35);
+      background: linear-gradient(135deg, #3a0e0e, #1a0a0a);
       display: flex; align-items: center; justify-content: center;
     }
     .card-img .house-svg { font-size: 5rem; opacity: .18; }
@@ -187,7 +187,7 @@
     #nosotros { background: var(--white); }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
     .about-visual {
-      background: linear-gradient(135deg, #0f1f35, #1a3358);
+      background: linear-gradient(135deg, #1a0a0a, #4a1010);
       border-radius: 20px; padding: 50px 40px;
       display: flex; flex-direction: column; gap: 28px; position: relative; overflow: hidden;
     }
@@ -206,7 +206,7 @@
     .info-row strong { font-weight: 600; }
     .matricula-tag {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--cream); border: 1px solid rgba(201,146,42,.3);
+      background: var(--cream); border: 1px solid rgba(192,41,43,.3);
       color: var(--navy); padding: 8px 16px; border-radius: 8px; font-size: .85rem;
       margin-top: 20px;
     }
@@ -246,7 +246,7 @@
 
     /* ── FOOTER ── */
     footer {
-      background: #07111e; padding: 36px 6vw;
+      background: #0f0505; padding: 36px 6vw;
       display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
       border-top: 1px solid rgba(201,146,42,.2);
     }
@@ -393,7 +393,7 @@
 
       <!-- PROP 4 -->
       <div class="card" data-tipo="venta">
-        <div class="card-img" style="background: linear-gradient(135deg, #1e3a5f, #2a4f7a);">
+        <div class="card-img" style="background: linear-gradient(135deg, #4a1010, #6a1515);">
           <span class="house-svg">🏠</span>
           <span class="card-badge badge-venta">Venta</span>
           <div class="card-icons">
@@ -414,7 +414,7 @@
 
       <!-- LOCAL ALQUILER -->
       <div class="card" data-tipo="alquiler">
-        <div class="card-img" style="background: linear-gradient(135deg, #0c3550, #0e5070);">
+        <div class="card-img" style="background: linear-gradient(135deg, #2a0808, #3d0e0e);">
           <span class="house-svg">🏪</span>
           <span class="card-badge badge-alquiler">Alquiler</span>
           <div class="card-icons">
